@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import ScrollAnimation from "./ScrollAnimation";
 
 const leftData = [
   {
@@ -108,72 +109,74 @@ const rightData = [
 const TslaFinancials = () => {
   return (
     <section className="bg-[#97A6B3] relative overflow-hidden">
-      <div className="max-w-[1400px mx-auto px-">
-        {/* Sticky Container */}
-        <div className="bg-[#121318] rounded-[20px  flex flex-col h-[75vh] min-h-[500px] shadow-2xl overflow-hidden relative">
-          {/* Fixed Header */}
-          <div className="shrink-0 pt-3 pb-3 px-8 md:px-12 bg-[#121318] z-10 shadow-sm flex items-center justify-between">
-            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide">
-              <span className="text-[#3b82f6]">TSLA</span> Financials
-            </h2>
-          </div>
+      <ScrollAnimation animation="fadeUp">
+        <div className="max-w-[1400px mx-auto px-">
+          {/* Sticky Container */}
+          <div className="bg-[#121318] rounded-[20px  flex flex-col h-[75vh] min-h-[500px] shadow-2xl overflow-hidden relative">
+            {/* Fixed Header */}
+            <div className="shrink-0 pt-3 pb-3 px-8 md:px-12 bg-[#121318] z-10 shadow-sm flex items-center justify-between">
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide">
+                <span className="text-[#3b82f6]">TSLA</span> Financials
+              </h2>
+            </div>
 
-          {/* Scrollable Body */}
-          <div className="flex-1 overflow-y-auto px-8 md:px-12 py-8 custom-scrollbar">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
-              {/* Left Column */}
-              <div className="space-y-8">
-                {leftData.map((group, groupIdx) => (
-                  <div key={groupIdx}>
-                    {group.category && (
-                      <h3 className="text-white font-medium text-[12px] mb-3">
-                        {group.category}
-                      </h3>
-                    )}
-                    <div className="space-y-[6px]">
-                      {group.items.map((item, itemIdx) => (
-                        <div
-                          key={itemIdx}
-                          className="flex justify-between items-center text-[10px] leading-snug">
-                          <span className="text-gray-300">{item.label}</span>
-                          <span className="text-white font-semibold text-right">
-                            {item.value}
-                          </span>
-                        </div>
-                      ))}
+            {/* Scrollable Body */}
+            <div className="flex-1 overflow-y-auto px-8 md:px-12 py-8 custom-scrollbar">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+                {/* Left Column */}
+                <div className="space-y-8">
+                  {leftData.map((group, groupIdx) => (
+                    <div key={groupIdx}>
+                      {group.category && (
+                        <h3 className="text-white font-medium text-[12px] mb-3">
+                          {group.category}
+                        </h3>
+                      )}
+                      <div className="space-y-[6px]">
+                        {group.items.map((item, itemIdx) => (
+                          <div
+                            key={itemIdx}
+                            className="flex justify-between items-center text-[10px] leading-snug">
+                            <span className="text-gray-300">{item.label}</span>
+                            <span className="text-white font-semibold text-right">
+                              {item.value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* Right Column */}
-              <div className="space-y-8">
-                {rightData.map((group, groupIdx) => (
-                  <div key={groupIdx}>
-                    {group.category && (
-                      <h3 className="text-white font-medium text-[12px] mb-3">
-                        {group.category}
-                      </h3>
-                    )}
-                    <div className="space-y-[6px]">
-                      {group.items.map((item, itemIdx) => (
-                        <div
-                          key={itemIdx}
-                          className="flex justify-between items-center text-[10px] leading-snug">
-                          <span className="text-gray-300">{item.label}</span>
-                          <span className="text-white font-semibold text-right">
-                            {item.value}
-                          </span>
-                        </div>
-                      ))}
+                {/* Right Column */}
+                <div className="space-y-8">
+                  {rightData.map((group, groupIdx) => (
+                    <div key={groupIdx}>
+                      {group.category && (
+                        <h3 className="text-white font-medium text-[12px] mb-3">
+                          {group.category}
+                        </h3>
+                      )}
+                      <div className="space-y-[6px]">
+                        {group.items.map((item, itemIdx) => (
+                          <div
+                            key={itemIdx}
+                            className="flex justify-between items-center text-[10px] leading-snug">
+                            <span className="text-gray-300">{item.label}</span>
+                            <span className="text-white font-semibold text-right">
+                              {item.value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
 
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {

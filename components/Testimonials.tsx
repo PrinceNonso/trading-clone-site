@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import ScrollAnimation from "./ScrollAnimation";
 
 const testimonials = [
   {
@@ -124,9 +125,11 @@ const Testimonials = () => {
         />
       </div>
       <div className="max-w-[1400px] mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-20 leading-tight">
-          What Our Clients Are <br /> Saying
-        </h2>
+        <ScrollAnimation animation="fadeUp">
+          <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-20 leading-tight">
+            What Our Clients Are <br /> Saying
+          </h2>
+        </ScrollAnimation>
         {/* Viewport */}
         <div ref={viewportRef} className="overflow-hidden py-8">
           {cardWidth > 0 && (

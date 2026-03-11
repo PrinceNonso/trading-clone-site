@@ -2,117 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-
-const stockData = [
-  {
-    symbol: "A",
-    name: "",
-    price: "403.10",
-    change: "-2.84",
-    pct: "-0.70%",
-    negative: true,
-    icon: "📊",
-  },
-  {
-    symbol: "AAPL",
-    name: "",
-    price: "258.48",
-    change: "-4.04",
-    pct: "-1.54%",
-    negative: true,
-    icon: "🍎",
-  },
-  {
-    symbol: "AMZN",
-    name: "",
-    price: "215.92",
-    change: "-0.90",
-    pct: "-0.42%",
-    negative: true,
-    icon: "🟡",
-  },
-  {
-    symbol: "AMD",
-    name: "",
-    price: "200.27",
-    change: "-1.80",
-    pct: "-0.89%",
-    negative: true,
-    icon: "📐",
-  },
-  {
-    symbol: "META",
-    name: "",
-    price: "659.93",
-    change: "-7.80",
-    pct: "-1.17%",
-    negative: true,
-    icon: "🔵",
-  },
-  {
-    symbol: "MSFT",
-    name: "",
-    price: "406.38",
-    change: "+1.18",
-    pct: "+0.29%",
-    negative: false,
-    icon: "🟦",
-  },
-  {
-    symbol: "GOOGL",
-    name: "",
-    price: "174.52",
-    change: "-1.23",
-    pct: "-0.70%",
-    negative: true,
-    icon: "🔍",
-  },
-  {
-    symbol: "TSLA",
-    name: "",
-    price: "302.15",
-    change: "+4.87",
-    pct: "+1.64%",
-    negative: false,
-    icon: "⚡",
-  },
-  {
-    symbol: "NVDA",
-    name: "",
-    price: "875.30",
-    change: "-12.45",
-    pct: "-1.40%",
-    negative: true,
-    icon: "💚",
-  },
-  {
-    symbol: "NFLX",
-    name: "",
-    price: "628.90",
-    change: "+3.22",
-    pct: "+0.51%",
-    negative: false,
-    icon: "🔴",
-  },
-];
-
-const TickerItem = ({ stock }: { stock: (typeof stockData)[0] }) => (
-  <div className="flex items-center gap-4 px-6 shrink-0">
-    <span className="text-base">{stock.icon}</span>
-    <span className="text-white font-bold text-sm tracking-wide">
-      {stock.symbol}
-    </span>
-    <span className="text-white/80 text-sm">{stock.price}</span>
-    <span
-      className={`text-sm font-medium ${stock.negative ? "text-red-400" : "text-[#b4f12c]"}`}>
-      {stock.change}
-    </span>
-    <span
-      className={`text-sm ${stock.negative ? "text-red-400" : "text-[#b4f12c]"}`}>
-      ({stock.pct})
-    </span>
-  </div>
-);
+import TradingViewTickerTape from "./TradingViewTickerTape";
 
 const HeroSection = () => {
   return (
@@ -122,40 +12,54 @@ const HeroSection = () => {
       {/* Background Candlestick Image */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[#060b09]">
         {/* Infinite Panning Images & Grid */}
-        <div className="absolute inset-0 flex w-[200vw] animate-pan-bg">
+        <div className="absolute inset-0 flex w-[110vw] animate-pan-bg">
           {/* Grid Pattern spanning the entire panning canvas */}
           <div
-            className="absolute inset-0 z-10 opacity-[0.1]"
+            className="absolute inset-0 z-10 opacity-[0.07]"
             style={{
               backgroundImage:
                 "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
               backgroundSize: "50px 50px",
             }}
           />
-          <div className="relative w-[100vw] h-full shrink-0">
+          <div className="relative w-[55vw] h-full shrink-0">
             <Image
               src="/candlestick-bg.png"
               alt=""
               fill
-              className="object-cover opacity-60 mix-blend-lighten"
+              className="object-cover opacity-80 mix-blend-lighten"
               priority
             />
           </div>
-          <div className="relative w-[100vw] h-full shrink-0">
+          <div className="relative w-[55vw] h-full shrink-0">
             <Image
               src="/candlestick-bg.png"
               alt=""
               fill
-              className="object-cover opacity-60 mix-blend-lighten"
+              className="object-cover opacity-80 mix-blend-lighten"
               priority
             />
           </div>
         </div>
 
         {/* Brand Green Tint & Fades */}
-        <div className="absolute inset-0 bg-[#c8e632]/5 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060b09] via-[#060b09]/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060b09]/80 via-transparent to-[#0a0f0d]" />
+        <div className="absolute inset-0 bg-[#c8e632]/3 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060b09] via-[#060b09]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060b09]/60 via-transparent to-[#0a0f0d]" />
+
+        {/* Corner color shadings */}
+        <div className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-[#0f9b58]/15 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute -bottom-20 -right-20 w-[500px] h-[500px] bg-[#e74c3c]/10 rounded-full blur-[150px] pointer-events-none" />
+
+        {/* Horizontal scanning line */}
+        <div
+          className="absolute left-0 w-full h-[1px] z-20 animate-scan-line"
+          style={{
+           
+            background:
+              "linear-gradient(90deg, transparent, rgba(200,230,50,0.4) 20%, rgba(200,230,50,0.6) 50%, rgba(200,230,50,0.4) 80%, transparent)",
+          }}
+        />
       </div>
 
       {/* Hero Content */}
@@ -186,17 +90,8 @@ const HeroSection = () => {
       </div>
 
       {/* Stock Ticker Marquee */}
-      <div className="absolute bottom-0 left-0 w-full z-20 bg-[#0a0f0d]/90 backdrop-blur-sm border-t border-white/5">
-        <div className="relative overflow-hidden h-12 flex items-center">
-          <div className="flex animate-marquee whitespace-nowrap">
-            {stockData.map((stock, i) => (
-              <TickerItem key={`a-${i}`} stock={stock} />
-            ))}
-            {stockData.map((stock, i) => (
-              <TickerItem key={`b-${i}`} stock={stock} />
-            ))}
-          </div>
-        </div>
+      <div className="absolute bottom-0 left-0 w-full z-10">
+        <TradingViewTickerTape />
       </div>
     </section>
   );

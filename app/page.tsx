@@ -16,13 +16,21 @@ import Testimonials from "@/components/Testimonials";
 import FaqSection from "@/components/FaqSection";
 import TslaFinancials from "@/components/TslaFinancials";
 import Footer from "@/components/Footer";
+import TradingViewTickerTape from "@/components/TradingViewTickerTape";
+
+import TradingViewChart from "@/components/TradingViewChart";
+import ActivityNotification from "@/components/ActivityNotification";
 
 const Page = () => {
   return (
     <main className="bg-[#060b09] min-h-screen">
       <Navbar />
-      <HeroSection />
+      <ActivityNotification />
+      <div className="">
+        <HeroSection />
+      </div>
       <TradingBenefits />
+      <TradingViewChart />
       <TradingOpportunities />
       <StockPerformance />
       <InvestmentSolutions />

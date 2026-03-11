@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import ScrollAnimation from "./ScrollAnimation";
 
 const faqs = [
   {
@@ -43,12 +44,14 @@ const FaqSection = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16 leading-tight">
-          FAQ Here
-        </h2>
+        <ScrollAnimation animation="fadeUp">
+          <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16 leading-tight">
+            FAQ Here
+          </h2>
+        </ScrollAnimation>
 
         {/* Accordion Container */}
-        <div className="max-w-2xl relative z-20">
+        <ScrollAnimation animation="fadeUp" delay={0.2}>
           <div className="space-y-4">
             {faqs.map((item, idx) => {
               const isOpen = activeIdx === idx;
@@ -114,7 +117,7 @@ const FaqSection = () => {
               </a>
             </p>
           </div>
-        </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

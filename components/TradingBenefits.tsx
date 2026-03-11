@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import ScrollAnimation from "./ScrollAnimation";
 
 const TradingBenefits = () => {
   return (
@@ -12,7 +13,10 @@ const TradingBenefits = () => {
 
       <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         {/* Left — Image */}
-        <div className="relative w-full max-w-md lg:max-w-lg flex-shrink-0">
+        <ScrollAnimation
+          animation="fadeLeft"
+          duration={0.7}
+          className="relative w-full max-w-md lg:max-w-lg flex-shrink-0">
           <div className="relative aspect-square">
             <Image
               src="/yellowCoin.png"
@@ -22,35 +26,42 @@ const TradingBenefits = () => {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-        </div>
+        </ScrollAnimation>
 
         {/* Right — Content */}
         <div className="flex-1 max-w-xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-            Discover Our
-            <br />
-            Trading Benefits
-          </h2>
+          <ScrollAnimation animation="fadeRight" duration={0.7}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              Discover Our
+              <br />
+              Trading Benefits
+            </h2>
+          </ScrollAnimation>
 
-          <p className="mt-8 text-gray-400 text-base leading-relaxed">
-            We provide novices with an automated system that maximizes profit on
-            their capital and guarantees the right trades are made and monitored
-            to perform correctly. It is one of the things that sets us apart
-            from other brokerage firms. Our trading system primarily trades on
-            stocks and blockchain.
-          </p>
+          <ScrollAnimation animation="fadeUp" delay={0.2}>
+            <p className="mt-8 text-gray-400 text-base leading-relaxed">
+              We provide novices with an automated system that maximizes profit
+              on their capital and guarantees the right trades are made and
+              monitored to perform correctly. It is one of the things that sets
+              us apart from other brokerage firms. Our trading system primarily
+              trades on stocks and blockchain.
+            </p>
 
-          <p className="mt-5 text-gray-400 text-base leading-relaxed">
-            It is one of the things that sets us apart from other brokerage
-            firms. Our trading system primarily trades on stocks and blockchain.
-          </p>
+            <p className="mt-5 text-gray-400 text-base leading-relaxed">
+              It is one of the things that sets us apart from other brokerage
+              firms. Our trading system primarily trades on stocks and
+              blockchain.
+            </p>
+          </ScrollAnimation>
 
           {/* CTA Button */}
-          <a
-            href="#get-started"
-            className="mt-10 inline-flex items-center px-7 py-3 rounded-md border border-[#c8e632] text-[#c8e632] text-sm font-semibold hover:bg-[#c8e632] hover:text-[#0a0f0d] transition-all duration-300 hover:shadow-[0_0_24px_rgba(200,230,50,0.2)]">
-            Get Started
-          </a>
+          <ScrollAnimation animation="fadeUp" delay={0.4}>
+            <a
+              href="#get-started"
+              className="mt-10 inline-flex items-center px-7 py-3 rounded-md border border-[#c8e632] text-[#c8e632] text-sm font-semibold hover:bg-[#c8e632] hover:text-[#0a0f0d] transition-all duration-300 hover:shadow-[0_0_24px_rgba(200,230,50,0.2)]">
+              Get Started
+            </a>
+          </ScrollAnimation>
         </div>
       </div>
 
