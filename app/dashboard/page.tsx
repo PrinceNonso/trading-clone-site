@@ -2,15 +2,36 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import {
-  DollarSign,
-  Sprout,
-  Gift,
-  Coins,
-  ArrowUpRight,
-  Copy,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowUpRight, Copy, ArrowRight } from "lucide-react";
+import { FaCoins, FaSackDollar } from "react-icons/fa6";
+import { BsGiftFill } from "react-icons/bs";
+import SproutIcon from "@/app/assets/svg";
+
+type MoneyBagIconProps = React.SVGProps<SVGSVGElement> & {
+  size?: number;
+};
+
+const MoneyBagIcon = ({
+  size = 24,
+  strokeWidth = 1.6,
+  ...props
+}: MoneyBagIconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={strokeWidth}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}>
+    <path d="M9 7c-1.6 0-3.1-.5-4-1.3C6 4.7 8.1 3 12 3s6 1.7 7 2.7C18.1 6.5 16.6 7 15 7H9Z" />
+    <path d="M8.6 7.6C6.4 9.1 5 11.6 5 15c0 4 2.5 6 7 6s7-2 7-6c0-3.4-1.4-5.9-3.6-7.4" />
+    <path d="M12 10v6" />
+    <path d="M10.6 12h2.8a1.4 1.4 0 1 1 0 2.8h-2.8a1.4 1.4 0 1 0 0 2.8h2.8" />
+  </svg>
+);
 
 export default function DashboardHome() {
   const miniChartRef = useRef<HTMLDivElement>(null);
@@ -136,45 +157,31 @@ export default function DashboardHome() {
           {/* Stat Cards - 2x2 grid */}
           <div className="md:col-span-2 grid grid-cols-2 gap-4">
             {[
-              {
-                label: "TOTAL DEPOSIT",
-                value: "$0.00",
-                icon: DollarSign,
-                gradient: "from-[#1a2420] to-[#141c18]",
-              },
-              {
-                label: "TOTAL PROFIT",
-                value: "$0.00",
-                icon: Sprout,
-                gradient: "from-[#1a2420] to-[#141c18]",
-              },
-              {
-                label: "REFFERAL BONUS",
-                value: "$0.00",
-                icon: Gift,
-                gradient: "from-[#1a2420] to-[#141c18]",
-              },
-              {
-                label: "WITHDRAWALS",
-                value: "$0.00",
-                icon: Coins,
-                gradient: "from-[#1a2420] to-[#141c18]",
-              },
+              { label: "TOTAL DEPOSIT", value: "$0.00", icon: FaSackDollar },
+              { label: "TOTAL PROFIT", value: "$0.00", icon: SproutIcon },
+              { label: "REFFERAL BONUS", value: "$0.00", icon: BsGiftFill },
+              { label: "WITHDRAWALS", value: "$0.00", icon: FaCoins },
             ].map((stat) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={stat.label}
-                  className={`bg-gradient-to-br ${stat.gradient} border border-white/5 rounded-xl p-5 flex items-center justify-between`}>
-                  <div>
-                    <p className="text-xl md:text-2xl font-bold text-white">
+                  className="bg-gradient-to-r  from-[#4b4a4a] to-[#2a2a2a] rounded-2xl pl-6 pr-0 py-0 flex items-center justify-between shadow-[0_10px_20px_rgba(0,0,0,0.35)]">
+                  <div className="py-5">
+                    <p className="text-2xl font-semibold text-white">
                       {stat.value}
                     </p>
-                    <p className="text-[10px] uppercase tracking-wider text-gray-400 mt-1">
+                    <p className="text-[11px] uppercase tracking-widest text-white/80 mt-1">
                       {stat.label}
                     </p>
                   </div>
-                  <Icon size={28} className="text-gray-500" />
+                  <div className="bg-[#1f1f1f] border border-white/5 h-full w-16 flex items-center justify-center rounded-r-2xl">
+                    {stat.label === "TOTAL PROFIT" ? (
+                      <Icon size={30} color="#ffffff" />
+                    ) : (
+                      <Icon size={30} className="text-white" />
+                    )}
+                  </div>
                 </div>
               );
             })}
