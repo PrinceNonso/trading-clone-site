@@ -1,14 +1,17 @@
 import NextAuth from "next-auth";
-import authConfig from "@/auth.config";
+import authConfig from "./auth.config";
 
-// Next.js 16+ "proxy" convention
-const { auth: proxyHandler } = NextAuth(authConfig);
+/**
+ * Next.js 16+ "proxy" convention (formerly middleware)
+ * We export a named function 'proxy' and provide it as default.
+ */
+const { auth: authHandler } = NextAuth(authConfig);
 
-// Exporting as a named function called 'proxy' to satisfy Next.js compiler
-export const proxy = proxyHandler;
+export async function proxy(req: any, ctx: any) {
+  return (authHandler as any)(req, ctx);
+}
 
-// Also providing as default for maximum compatibility
-export default proxyHandler;
+export default proxy;
 
 export const config = {
   // Matching everything except static files and api routes that don't need auth

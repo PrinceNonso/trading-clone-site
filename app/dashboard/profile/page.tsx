@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { prisma, safeDbQuery } from "@/lib/prisma";
 import ProfileClient from "@/components/profile/ProfileClient";
+export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
   const session = await auth();
